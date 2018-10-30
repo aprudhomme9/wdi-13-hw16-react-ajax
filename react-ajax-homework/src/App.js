@@ -6,7 +6,7 @@ import Pokemon from './Pokemon';
 
 
 
-const endPoint = 'https://pokeapi.co/api/v2/pokemon'
+const endPoint = 'https://pokeapi.co/api/v2/pokemon/'
 
 class App extends Component {
   constructor(){
@@ -26,22 +26,45 @@ class App extends Component {
       logged: logged
     })
   }
-  getPokemon = async (req, res) => {
+  getPokemon = async (index) => {
     try {
-      const pokemon = await fetch(endPoint);
-      const pokemonJS = await pokemon.json();
 
-      return pokemonJS;
+        const original = [];
+      
+        const pokemon = await fetch('https://pokeapi.co/api/v2/pokemon/' + index + '/');
+
+        const pokemonJS = await pokemon.json();
+
+        
+      
+      return pokemonJS
 
     } catch (err) {
-      res.send(err)
+      // res.send(err)
     }
   }
+  componentDidMount(){
+
+    for(let i = 1; i < 151; i++) {
+      this.getPokemon(i).then(async (pokemon) => {
+        try {
+          await this.state.pokemon.push(pokemon);
+        } catch (err) {
+          
+        }
+        
+    })
+    }
+
+    this.setState({
+        pokemon: this.state.pokemon
+      })
+  }
   render() {
-    console.log(this.state);
+    console.log(this.state.pokemon);
     return (
       <div className="App">
-        {!this.state.logged ? <MainContainer handleLogin={this.handleLogin} /> : <Pokemon />}
+        {!this.state.logged ? <MainContainer handleLogin={this.handleLogin} /> : <Pokemon pokemon={this.state.pokemon} />}
       </div>
     );
   }

@@ -3,32 +3,32 @@ import React, {Component} from 'react';
 import {Button, Form, Grid, Segment} from 'semantic-ui-react';
 
 
-const endPoint = 'https://pokeapi.co/api/v2/pokemon'
-
 
 class Pokemon extends Component {
-	getPokemon = async (req, res) => {
-    try {
-      const pokemon = await fetch(endPoint);
-      const pokemonJS = await pokemon.json();
+	
 
-      return pokemonJS;
-
-    } catch (err) {
-      res.send(err)
-    }
-  }
 	render(){
 
-
+		const pokemon = this.props.pokemon.map((pokemon, i) => {
+			return <li key={i}>
+				<img src={pokemon.sprites.front_default} /><br/>
+					Name: {pokemon.name} <br/>
+					Base Experience: {pokemon.base_experience}<br/>
+					Primary Attack: {pokemon.moves[0].move.name}<br/>
+					</li>
+		})
 
 
 
 
 		return(
-
-
-			<h1>hey</h1>
+			<div>
+				<h1>The Original 150</h1>
+				<ul>
+					{pokemon}
+				</ul>
+			</div>
+			
 
 
 
