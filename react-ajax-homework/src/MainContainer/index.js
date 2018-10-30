@@ -24,7 +24,8 @@ class MainContainer extends Component {
 	render(){
 		console.log(this.state);
 		return(
-
+			<div>
+			<h1>LOG IN TO CATCH EM ALL</h1>
 			 <Form onSubmit={this.handleSubmit}>
                 <Form.Input icon='user' iconPosition='left' type="text" name="username" onChange={this.handleInput} value={this.state.username} placeholder="username"/>
                 <br />
@@ -32,6 +33,7 @@ class MainContainer extends Component {
                 <br />
                 <Button color='blue' fluid size='large' type="submit" value="Login">Login</Button>
             </Form>
+            </div>
 
 			)
 	}

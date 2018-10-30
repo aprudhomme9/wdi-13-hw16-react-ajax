@@ -15,6 +15,7 @@ class Pokemon extends Component {
 					Name: {pokemon.name} <br/>
 					Base Experience: {pokemon.base_experience}<br/>
 					Primary Attack: {pokemon.moves[0].move.name}<br/>
+					Height: {pokemon.height} ft.<br/>
 					</li>
 		})
 

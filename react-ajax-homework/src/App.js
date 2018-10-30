@@ -29,7 +29,6 @@ class App extends Component {
   getPokemon = async (index) => {
     try {
 
-        const original = [];
       
         const pokemon = await fetch('https://pokeapi.co/api/v2/pokemon/' + index + '/');
 
@@ -45,7 +44,7 @@ class App extends Component {
   }
   componentDidMount(){
 
-    for(let i = 1; i < 151; i++) {
+    for(let i = 1; i < 152; i++) {
       this.getPokemon(i).then(async (pokemon) => {
         try {
           await this.state.pokemon.push(pokemon);
