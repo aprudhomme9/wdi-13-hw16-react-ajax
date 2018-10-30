@@ -6,7 +6,7 @@ import Pokemon from './Pokemon';
 
 
 
-
+const endPoint = 'https://pokeapi.co/api/v2/pokemon'
 
 class App extends Component {
   constructor(){
@@ -26,7 +26,17 @@ class App extends Component {
       logged: logged
     })
   }
-  
+  getPokemon = async (req, res) => {
+    try {
+      const pokemon = await fetch(endPoint);
+      const pokemonJS = await pokemon.json();
+
+      return pokemonJS;
+
+    } catch (err) {
+      res.send(err)
+    }
+  }
   render() {
     console.log(this.state);
     return (
