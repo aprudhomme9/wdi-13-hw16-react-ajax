@@ -26,6 +26,11 @@ class App extends Component {
       logged: logged
     })
   }
+  handleBack = () => {
+    this.setState({
+      logged: false
+    })
+  }
   getPokemon = async (index) => {
     try {
 
@@ -48,22 +53,20 @@ class App extends Component {
       this.getPokemon(i).then(async (pokemon) => {
         try {
           await this.state.pokemon.push(pokemon);
+          this.setState({
+            pokemon: this.state.pokemon
+          })
         } catch (err) {
           
         }
         
-    })
-    }
-
-    this.setState({
-        pokemon: this.state.pokemon
       })
+    }
   }
   render() {
-    console.log(this.state.pokemon);
     return (
       <div className="App">
-        {!this.state.logged ? <MainContainer handleLogin={this.handleLogin} /> : <Pokemon pokemon={this.state.pokemon} />}
+        {!this.state.logged ? <MainContainer handleLogin={this.handleLogin} /> : <Pokemon handleBack={this.handleBack} pokemon={this.state.pokemon} />}
       </div>
     );
   }

@@ -22,7 +22,6 @@ class MainContainer extends Component {
 		})
 	}
 	render(){
-		console.log(this.state);
 		return(
 			<div>
 			<h1>LOG IN TO CATCH EM ALL</h1>
